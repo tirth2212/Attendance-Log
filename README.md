@@ -1,4 +1,5 @@
-Attendance Log
+**Attendance Log**
+
 **Attendance Log** is a web app with AI that automate attendance record.
 It will detect evey face that came in the range of the camera and compare it with the all the employees
 in the system. Then it will automatically update the arrival or departure time in the database.
