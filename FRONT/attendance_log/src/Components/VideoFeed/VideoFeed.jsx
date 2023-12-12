@@ -32,20 +32,20 @@ const VideoComponent = () => {
 
     getUserMedia();
 
-    const FPS = 3;
+    const FPS = 0.5;
 
     const intervalId = setInterval(() => {
       const width = video.width;
       const height = video.height;
       context.drawImage(video,0,0);
       const data = canvas.toDataURL('image/jpeg',1.0);
-      photoRef.current.setAttribute('src', data);
       context.clearRect(0, 0, width, height);
       socket.emit('image', data);
     }, 1000 / FPS);
 
     socket.on('response_back', function (image) {
-      // photoRef.current.setAttribute('src', image);
+      console.log("yoyoimage","data:image/jpeg;base64,"+image);
+      photoRef.current.setAttribute('src', "data:image/jpeg;base64,"+image);
     });
 
     // Cleanup function
