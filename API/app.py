@@ -91,11 +91,12 @@ def process_frames(frame):
 
             # * ---------- SEND data to API --------- *
 
-            print(json_to_export)
-            # r = requests.post(url='http://127.0.0.1:8080/receive_data', json=json_to_export)
-            # print("Status: ", r.status_code)
+            # print(json_to_export)
+            r = requests.post(url='http://127.0.0.1:8080/receive_data', json=json_to_export)
+            print("Status: ", r.status_code)
 
         face_names.append(name)
+    return face_names
 
 
 @socketio.on('image')
@@ -105,7 +106,8 @@ def image(data_image):
     nparr = np.frombuffer(img_data, np.uint8)
     # Read the image in OpenCV
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    process_frames(img)
+    names = process_frames(img)
+    print('names',names)
     emit('response_back', "Hello")
 
 

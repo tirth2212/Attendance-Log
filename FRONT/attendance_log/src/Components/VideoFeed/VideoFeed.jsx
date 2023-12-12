@@ -41,7 +41,7 @@ const VideoComponent = () => {
       const data = canvas.toDataURL('image/jpeg',1.0);
       photoRef.current.setAttribute('src', data);
       context.clearRect(0, 0, width, height);
-      // socket.emit('image', data);
+      socket.emit('image', data);
     }, 1000 / FPS);
 
     socket.on('response_back', function (image) {
