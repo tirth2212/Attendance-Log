@@ -1,41 +1,3 @@
-// import React from 'react';
-// import styled from 'styled-components'
-
-// const VideoFeed = () => {
-//     const VideoFeedSection = styled.section`
-//         display: flex;
-//         flex-direction: column;
-//         margin: 40px 10px;
-//         background-color: #ffffff;
-//         padding: 20px;
-//         width: 45vw;
-//         h2 {
-//             margin-top : 0;
-//             font-size: 45px;
-//             line-height: 1;
-//             font-weight: normal;
-//             color: #013087;
-//             text-align: center;
-//         }
-// `
-//     return (
-//             <VideoFeedSection className='some-space'>
-// 				<h2>Video Feed - classroom 1</h2>
-//                 <iframe allowFullScreen
-//                         title = 'camera feed'
-//                         webkitallowfullscreen
-//                         mozallowfullscreen
-// 			// !!! TO CHANGE !!!
-//                         src="YOUR FEED HERE"
-//                         frameBorder="0"
-//                         width="100%"
-//                         height="576" />
-// 			</VideoFeedSection>
-//     );
-// };
-
-// export default VideoFeed;
-
 import React, { useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 
@@ -75,14 +37,15 @@ const VideoComponent = () => {
     const intervalId = setInterval(() => {
       const width = video.width;
       const height = video.height;
-      context.drawImage(video, 0, 0, width, height);
-      const data = canvas.toDataURL('image/jpeg', 0.5);
+      context.drawImage(video,0,0);
+      const data = canvas.toDataURL('image/jpeg',1.0);
+      photoRef.current.setAttribute('src', data);
       context.clearRect(0, 0, width, height);
-      socket.emit('image', data);
+      // socket.emit('image', data);
     }, 1000 / FPS);
 
     socket.on('response_back', function (image) {
-      photoRef.current.setAttribute('src', image);
+      // photoRef.current.setAttribute('src', image);
     });
 
     // Cleanup function
@@ -96,11 +59,12 @@ const VideoComponent = () => {
     <div>
       <div id="container">
         <video ref={videoRef} autoPlay playsInline id="videoElement"></video>
-        <canvas ref={canvasRef} id="canvas" width="100%" height="100%"></canvas>
+        <canvas ref={canvasRef} id="canvas" width="640" height="480" style={{display: "None"}}></canvas>
       </div>
 
       <div className="video">
-        <img ref={photoRef} id="photo" width="100%" height="100%" alt="video" style={{display: 'none'}} />
+        <img ref={photoRef} id="photo" width="400" height="300" alt="video"/> 
+        {/* style={{display: 'none'}} /> */}
         {/* <h1>video</h1> */}
       </div>
     </div>
@@ -109,35 +73,10 @@ const VideoComponent = () => {
 
 // export default VideoComponent;
 const VideoFeed = () => {
-    //     const VideoFeedSection = styled.section`
-    //         display: flex;
-    //         flex-direction: column;
-    //         margin: 40px 10px;
-    //         background-color: #ffffff;
-    //         padding: 20px;
-    //         width: 45vw;
-    //         h2 {
-    //             margin-top : 0;
-    //             font-size: 45px;
-    //             line-height: 1;
-    //             font-weight: normal;
-    //             color: #013087;
-    //             text-align: center;
-    //         }
-    // `
     return (
                     <section style={{display: 'flex', flexDirection: 'column', margin: "40px 10px", backgroundColor: "#ffffff", padding: "20px", width: "45vw"}} className='some-space'>
         				<h2>Video Feed - classroom 1</h2>
                         <VideoComponent/>
-                        {/* <iframe allowFullScreen
-                                title = 'camera feed'
-                                webkitallowfullscreen
-                                mozallowfullscreen
-        			// !!! TO CHANGE !!!
-                                src="YOUR FEED HERE"
-                                frameBorder="0"
-                                width="100%"
-                                height="576" /> */}
         			</section>
             );
         };
