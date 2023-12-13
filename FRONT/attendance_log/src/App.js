@@ -5,6 +5,9 @@ import SearchBar from './Components/SearchBar/SearchBar'
 import LastArrivalList from './Components/LastArrivalList/LastArrivalList'
 import AdminBlock from './Components/AdminBlock/AdminBlock'
 import styled from 'styled-components'
+require('dotenv').config()
+console.log(process.env.REACT_APP_REACT_APP_SERVER_URL)
+
 
 function App() {
 

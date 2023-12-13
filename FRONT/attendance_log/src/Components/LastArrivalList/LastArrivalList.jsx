@@ -34,10 +34,10 @@ const LastArrivalList = () => {
     // * ---------- STATES --------- *
     const [employeeList, setEmployeeList] = useState([]);
     const [isListIsLoad, setIsListIsLoad] = useState(false);
-
+    const url = process.env.REACT_APP_SERVER_URL;
     const searchForLastEntries = () => {
         if (!isListIsLoad){
-            fetch('http://127.0.0.1:8080/get_5_last_entries')
+            fetch(`${url}/get_5_last_entries`)
             .then(response => response.json())
             .then(response => {
                 if(response) {

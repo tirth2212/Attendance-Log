@@ -42,7 +42,8 @@ const EmployeeToDeleteList = props => {
 
     // Get the list of all employee from the API
     const getEmployeeList = () => {
-        fetch('http://127.0.0.1:8080/get_employee_list')
+        const url = process.env.REACT_APP_SERVER_URL;
+        fetch(`${url}/get_employee_list`)
             .then(response => response.json())
             .then (response =>{
                 if(!isEmployeeListLoaded){
@@ -64,10 +65,10 @@ const EmployeeToDeleteList = props => {
 
     // Component that contain the Employee's name and a button to delete it
     const EmployeeItem = props => {
-
+        const url = process.env.REACT_APP_SERVER_URL;
         // Function that send the employee's name to delete
         const deleteEmployee = name => {
-            fetch(`http://127.0.0.1:8080/delete_employee/${name}`)
+            fetch(`${url}/delete_employee/${name}`)
                 .then(response => response.json())
                 .then(() => setIsEmployeeListLoaded(false))
         }

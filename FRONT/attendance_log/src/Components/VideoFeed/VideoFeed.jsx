@@ -7,7 +7,9 @@ const VideoComponent = () => {
   const photoRef = useRef(null);
 
   useEffect(() => {
-    const socket = io.connect('http://127.0.0.1:8080');
+    const url = process.env.REACT_APP_SERVER_URL;
+    const socket = io.connect(url);
+    console.log("yooooooo", url)
 
     socket.on('connect', function () {
       console.log('Connected...!', socket.connected);
@@ -32,7 +34,7 @@ const VideoComponent = () => {
 
     getUserMedia();
 
-    const FPS = 0.5;
+    const FPS = 0.25;
 
     const intervalId = setInterval(() => {
       const width = video.width;
