@@ -203,7 +203,7 @@ def get_employee(name):
         connection = DATABASE_CONNECTION()
         cursor = connection.cursor()
         # Query the DB to get all the data of a user:
-        user_information_sql_query = f"SELECT * FROM users WHERE name = '{name}'"
+        user_information_sql_query = f"SELECT * FROM users WHERE name LIKE '%{name}%'"
 
         cursor.execute(user_information_sql_query)
         result = cursor.fetchall()

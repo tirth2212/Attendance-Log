@@ -65,7 +65,7 @@ const SearchBar = props => {
 
 
     const searchForEmployee = () => {
-        const name = document.getElementById('searchForEmployee').value.toLowerCase()
+        const name = document.getElementById('searchForEmployee').value
         const url = process.env.REACT_APP_SERVER_URL;
         if(name){
             fetch(`${url}/get_employee/${name}`)
