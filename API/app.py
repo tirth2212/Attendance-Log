@@ -326,6 +326,6 @@ def delete_employee(name):
 # * -------------------- RUN SERVER -------------------- *
 if __name__ == '__main__':
     # * --- DEBUG MODE: --- *
-    socketio.run(app,host='0.0.0.0', port=8080)
+    socketio.run(app,host='127.0.0.1', port=8080)
     #  * --- DOCKER PRODUCTION MODE: --- *
     # app.run(host='0.0.0.0', port=os.environ['PORT']) -> DOCKER
