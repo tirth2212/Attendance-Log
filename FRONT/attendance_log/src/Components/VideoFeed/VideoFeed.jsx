@@ -9,7 +9,6 @@ const VideoComponent = () => {
   useEffect(() => {
     const url = process.env.REACT_APP_SERVER_URL;
     const socket = io.connect(url);
-    console.log("yooooooo", url)
 
     socket.on('connect', function () {
       console.log('Connected...!', socket.connected);

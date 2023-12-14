@@ -50,7 +50,7 @@ const AddEmployeeForm = props => {
     // * ----------- STATES ---------- *
     const [isUserWellAdded, setIsUserWellAdded] = useState(false);
     const [errorWhileAddingUser, seterrorWhileAddingUser] = useState(false);
-
+    const url = process.env.REACT_APP_SERVER_URL
     const addEmployeeToDb = e => {
         e.preventDefault()
         // Send it to backend -> add_employee as a POST request
@@ -61,7 +61,8 @@ const AddEmployeeForm = props => {
 
         formData.append("nameOfEmployee", name)
         formData.append("image", picture.files[0])
-        fetch('http://localhost:8080/add_employee',{
+        
+        fetch(`${url}/add_employee`,{
             method: 'POST',
             body:  formData,
         })
