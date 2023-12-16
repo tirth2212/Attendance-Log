@@ -282,7 +282,7 @@ def add_employee():
         print(request.form['nameOfEmployee'])
 
         # Store it in the folder of the know faces:
-        file_path = os.path.join(f"assets/img/users/{request.form['nameOfEmployee']}.jpg")
+        file_path = os.path.join(f"assets/img/users/{request.form['nameOfEmployee'].strip()}.jpg")
         image_file.save(file_path)
         answer = 'new employee succesfully added'
     except:
